@@ -52,13 +52,17 @@ nome_peça varchar(20)
 );
 
 create table Estoque_fornecedor(
-id_estoquefornecedor int not null auto_increment,
-primary key (id_estoquefornecedor)
+id_fornecedor int not null auto_increment,
+primary key (id_fornecedor),
+id_peça int not null auto_increment,
+primary key (id_peça)
 );
 
 create table Estoque_OrdemServiço(
-id_estoqueOrdemServiço int not null auto_increment,
-primary key (id_estoqueOrdemServiço)
+id_relOrdemServiço int not null auto_increment,
+primary key (id_relOrdemServiço),
+id_peça int not null auto_increment,
+primary key (id_peça),
 );
 
 create table Fabricante(
@@ -78,13 +82,63 @@ CNPJ char(18),
 logradouro_fornecedor varchar(40),
 num_fornecedor int not null,
 tel char(11),
-complemento_fornecedor
+complemento_fornecedor varchar(10),
+bairro varchar(40),
+CEP_fornecedor char(9)
 );
-create table();
-create table();
-create table();
-create table();
-create table();
-create table();
-create table();
-create table();
+
+create table Modelo(
+id_modelo int not null auto_increment,
+primary key (id_modelo),
+nome_Modelo varchar(40),
+tipo varchar(40)
+);
+
+create table Nota(
+id_nota int not null auto_increment,
+primary key (id_nota),
+data_compra datetime,
+data_venc date,
+num_nota int not null
+);
+
+create table OrdemServiço(
+id_ordem int not null auto_increment,
+primary key (id_ordem),
+data_registro datetime,
+data_pag datetime,
+pago boolean,
+concluida boolean
+);
+
+create table RelOrdemServiço(
+id_RelOrdemServiço int not null auto_increment,
+primary key (id_RelOrdemServiço)
+);
+
+create table Serviços(
+id_serviços int not null auto_increment,
+primary key (id_serviços),
+val_serviço double,
+descriçao varchar(255)
+);
+
+create table Tipo(
+id_tipo int not null auto_increment,
+primary key (id_tipo),
+nome_tipo varchar(40)
+);
+
+create table TipoFornec(
+id_tipo int not null auto_increment,
+primary key (id_tipo),
+id_fornecedor int not null auto_increment,
+primary key (id_fornecedor)
+);
+
+create table Veiculo(
+id_veiculo int not null auto_increment,
+primary key (id_veiculo),
+quilometragem double,
+placa char(8)
+);
